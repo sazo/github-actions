@@ -60,7 +60,7 @@ jobs:
       - run: |
          echo "${{toJson(github)}}"
 
-  dump-context-detailed:
+  show-vars:
     runs-on: ubuntu-latest
     steps:
       - name: Print common variables
@@ -74,4 +74,36 @@ jobs:
           echo "GITHUB_RUN_ID: ${{ github.run_id }}"
           echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
           echo "GITHUB_JOB: ${{ github.job }}"
+          
+  show-context:
+    runs-on: ubuntu-latest
+    needs: show-vars
+    env:
+      JOB_ENV: "example job environment variable"
+    steps:
+      - name: Print Context Information Header
+        run: echo "Context Information:"
+      - name: Print github context
+        run: echo "${{ toJson(github) }}"
+      - name: Print env context
+        env:
+          JOB_ENV: "example job environment variable __UPDATED__"
+          STEP_ENV: "example step environment variable"
+        run: echo "${{ toJson(env) }}"
+      - name: Print inputs context
+        run: echo "${{ toJson(inputs) }}"
+      - name: Print vars context
+        run: echo "${{ toJson(vars) }}"
+      - name: Print secrets context
+        run: echo "${{ toJson(secrets) }}"
+      - name: Print job context
+        run: echo "${{ toJson(job) }}"
+      - name: Print needs context
+        run: echo "${{ toJson(needs) }}"
+      - name: Print runner context
+        run: echo "${{ toJson(runner) }}"
+      - name: Print matrix context
+        run: echo "${{ toJson(matrix) }}"
+      - name: Print strategy context
+        run: echo "${{ toJson(strategy) }}"
         
