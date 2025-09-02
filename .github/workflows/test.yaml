@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-         echo ${{toJson(github)}}
+         echo "${{toJson(github)}}"
 
   dump-context-detailed:
     runs-on: ubuntu-latest
