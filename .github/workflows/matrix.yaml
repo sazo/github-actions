@@ -5,6 +5,10 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Building on ubuntu-latest"
   test:
     needs: build
     runs-on: ${{ matrix.os }}
