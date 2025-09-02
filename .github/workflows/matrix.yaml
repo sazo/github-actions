@@ -1,0 +1,23 @@
+name: Matrix workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+  test:
+    needs: build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [16, 18]
+    steps:
+      - run: |
+          echo "Running on node ${{ matrix.node }}"
+          echo "Runner: ${{ matrix.os }}"
+    
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    needs: test
