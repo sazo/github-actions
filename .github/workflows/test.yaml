@@ -1,6 +1,25 @@
 name: Awesome workflow
 
+
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Your name"
+        required: true
+        default: "World"
+      log_level:
+        type: choice
+        required: true
+        default: "info"
+        options:
+          - info
+          - debug
+          - warning
+      boolean_test:
+        type: boolean
+        required: true
+        default: false
   push:
     branches:
       - main
