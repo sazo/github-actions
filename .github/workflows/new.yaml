@@ -1,0 +1,11 @@
+name: New workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Building on ubuntu-latest"
